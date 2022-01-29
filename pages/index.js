@@ -6,7 +6,14 @@ import {useEffect} from 'react';
 export default function Home() {
   useEffect(() => {
     let token = '';
-    fetch('/api/login').then(res=>res.json()).then(res=>{
+    fetch('/api/login',{
+      method: "POST",
+      body:JSON.stringify({
+        username:process.env.NEXT_PUBLIC_USERNAME,
+        password:process.env.NEXT_PUBLIC_PASSWORD,
+        token:btoa(`${process.env.NEXT_PUBLIC_KEY}:${process.env.NEXT_PUBLIC_SECRET}`)
+      })
+    }).then(res=>res.json()).then(res=>{
 
       token = res.data.access_token
       fetch('api/cameras', {

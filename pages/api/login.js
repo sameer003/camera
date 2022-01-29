@@ -1,8 +1,8 @@
 export default async function handler(req, res){
 
-
+  const {username, password, token} = JSON.parse(req.body);
     const resp = await fetch(
-        `https://rest.cameramanager.com/oauth/token?grant_type=password&scope=write&username=${process.env.NEXT_PUBLIC_USERNAME}&password=${process.env.NEXT_PUBLIC_PASSWORD}`,
+        `https://rest.cameramanager.com/oauth/token?grant_type=password&scope=write&username=${username}&password=${password}`,
         {
           method: "POST",
           headers: {
@@ -13,8 +13,8 @@ export default async function handler(req, res){
               "Origin, X-Requested-With, Content-Type, Accept, Authorization",
             "Access-Control-Request-Method": "GET, POST, DELETE, PUT, OPTIONS",
             Authorization:
-              "Basic " +
-              btoa(`${process.env.NEXT_PUBLIC_KEY}:${process.env.NEXT_PUBLIC_SECRET}`),
+              "Basic " + token
+              // btoa(`${process.env.NEXT_PUBLIC_KEY}:${process.env.NEXT_PUBLIC_SECRET}`),
           },
         }
     );
