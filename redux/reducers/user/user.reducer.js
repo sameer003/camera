@@ -3,7 +3,6 @@ import {
   REFRESH,
   LOGOUT
 } from "./user.types";
-import { checkLoggedIn } from "./helper.util";
 
 const INITIAL_STATE = {
   loggedIn: false,

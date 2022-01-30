@@ -15,7 +15,6 @@ export default async function handler(req, res){
               "Access-Control-Request-Method": "GET, POST, DELETE, PUT, OPTIONS",
               Authorization:
                 "Basic " + token
-                // btoa(`${process.env.NEXT_PUBLIC_KEY}:${process.env.NEXT_PUBLIC_SECRET}`),
             },
           }
       );

@@ -12,14 +12,15 @@ import {
 import Router from "next/router";
 
 export default function Camera({ camera }) {
-
   const gotoCamera = (cameraId) => {
     Router.push(`/camera/${cameraId}`);
   };
 
-
   return (
-    <div className="w-2/3 rounded overflow-hidden shadow-lg cursor-pointer" onClick={()  => gotoCamera(camera.cameraId)}>
+    <div
+      className="w-2/3 rounded overflow-hidden shadow-lg cursor-pointer"
+      onClick={() => gotoCamera(camera.cameraId)}
+    >
       <div className="px-6 py-4">
         <div className="flex  mb-2 justify-between">
           <h4 className="font-bold text-l">{camera.name}</h4>

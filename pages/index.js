@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { login, refresh } from "../redux/reducers/user/user.actions";
-import { initializeCameras } from "../redux/reducers/cameras/cameras.actions";
-import Router from "next/router";
-import { mapCameraData } from "../utils/helper";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Camera from "../components/camera";
 import Loader from "../components/common/loader/loader";
+import { initializeCameras } from "../redux/reducers/cameras/cameras.actions";
+import { mapCameraData } from "../utils/helper";
 import useLoggedIn from '../utils/useLoggedIn';
 
 export default function Home() {
@@ -37,8 +35,10 @@ export default function Home() {
       body: JSON.stringify({ access_token: user.access_token }),
     }).then((res) => res.json());
     setLoading(false);
+
     dispatch(initializeCameras(mapCameraData(cameras, zones, status)));
   }
+
   return (
     <div className="flex flex-col justify-center items-center">
       {loading && <Loader />}

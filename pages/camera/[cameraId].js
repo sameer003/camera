@@ -11,9 +11,8 @@ export default function Camera() {
   const [camera, setCamera] = useState({});
   const router = useRouter();
   const [loading, setLoading] = useLoggedIn();
-  const cameras = useSelector((state) => state.cameras.list);
-
   const { cameraId } = router.query;
+
   useEffect(() => {
     if (cameraId && user.access_token) {
       setLoading(true);
@@ -21,6 +20,7 @@ export default function Camera() {
     }
   }, [cameraId]);
 
+  // fetch camera details
   async function fetchCameraDetails(cameraId) {
     const camera = await fetch(`../api/cameras/${cameraId} `, {
       method: "POST",
