@@ -5,7 +5,7 @@ import { logout } from "../../redux/reducers/user/user.actions";
 import { initializeCameras } from "../../redux/reducers/cameras/cameras.actions";
 
 export default function Header() {
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const refresh_token = useSelector((state) => state.user.refresh_token);
   const dispatch = useDispatch();
   const onLogOut = () => {
     dispatch(logout());
@@ -17,9 +17,9 @@ export default function Header() {
       <div className="fixed top-0 left-0"></div>
 
       <h4 className="flex items-center cursor-pointer">
-        <RiDashboardFill className="mr-1" /> {loggedIn ? "Dashboard" : "Login"}
+        <RiDashboardFill className="mr-1" /> {refresh_token ? "Dashboard" : "Login"}
       </h4>
-      {loggedIn && (
+      {refresh_token && (
         <div
           onClick={onLogOut}
           className="fixed right-0 top-0 py-3 px-6 cursor-pointer flex items-center"

@@ -13,7 +13,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.loggedIn) {
+    if (user.refresh_token) {
       setLoading(true);
       getAllCameras();
     }

@@ -50,8 +50,8 @@ export default function useLoggedIn(){
             }
           })
           .then((res) => {
-            if (res && res.data) {
-              dispatch(login(res.data));
+            if (res) {
+              dispatch(login(res));
             }
           })
           .catch(console.error);

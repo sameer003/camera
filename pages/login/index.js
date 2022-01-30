@@ -42,8 +42,8 @@ const Login = () => {
       })
       .then((res) => {
         setLoading(false);
-        if (res && res.data) {
-          dispatch(login(res.data));
+        if (res) {
+          dispatch(login(res));
         }
       })
       .catch(console.error);
