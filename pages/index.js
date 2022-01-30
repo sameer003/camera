@@ -13,11 +13,9 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.refresh_token) {
       setLoading(true);
       getAllCameras();
-    }
-  }, [user]);
+  }, []);
 
   async function getAllCameras() {
     const cameras = await fetch("api/cameras", {
