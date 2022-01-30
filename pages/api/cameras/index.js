@@ -13,5 +13,5 @@ export default async function handler(req, res){
       });
       
       const data = await resp.json();
-    res.status(resp.status).json({data})
+    res.status(resp.status).json(data)
 }

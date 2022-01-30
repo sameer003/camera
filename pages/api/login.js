@@ -1,7 +1,8 @@
 export default async function handler(req, res){
 
   const {username, password, token} = JSON.parse(req.body);
-    const resp = await fetch(
+  try{
+    const response = await fetch(
         `https://rest.cameramanager.com/oauth/token?grant_type=password&scope=write&username=${username}&password=${password}`,
         {
           method: "POST",
@@ -18,7 +19,16 @@ export default async function handler(req, res){
           },
         }
     );
-
-    const data = await resp.json()
-    res.status(200).json({data})
+    
+    if(response.status == 200){
+      const data = await response.json();
+      res.status(response.status).json({data})
+    }else{
+      res.status(400).json({ error: 'Some error occurred' })
+    
+    }
+  } catch(e){
+    res.status(400).json({ error: e })
+  }
+    
 }
