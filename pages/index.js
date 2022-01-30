@@ -4,7 +4,7 @@ import Camera from "../components/camera";
 import Loader from "../components/common/loader/loader";
 import { initializeCameras } from "../redux/reducers/cameras/cameras.actions";
 import { mapCameraData } from "../utils/helper";
-import useLoggedIn from '../utils/useLoggedIn';
+import useLoggedIn from "../utils/useLoggedIn";
 
 export default function Home() {
   const [loading, setLoading] = useLoggedIn();
@@ -13,8 +13,10 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (user.access_token) {
       setLoading(true);
       getAllCameras();
+    }
   }, []);
 
   async function getAllCameras() {
