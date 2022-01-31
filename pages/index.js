@@ -9,11 +9,13 @@ import useLoggedIn from "../utils/useLoggedIn";
 export default function Home() {
   const [loading, setLoading] = useLoggedIn();
   const user = useSelector((state) => state.user);
-  const cameras = useSelector((state) => state.cameras.list);
+  const cameras = useSelector((state) =>
+    state.cameras.list.sort((a, b) => a.cameraId - b.cameraId)
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.access_token) {
+    if (user.access_token && !cameras.length) {
       setLoading(true);
       getAllCameras();
     }

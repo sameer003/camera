@@ -1,1 +1,2 @@
 export const CAMERA_LIST_INIT = 'CAMERA_LIST_INIT';
+export const CAMERA_DATA = 'CAMERA_DATA';
