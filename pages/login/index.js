@@ -6,6 +6,8 @@ import Router from "next/router";
 
 const Login = () => {
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   // Redirect User to dashboard of logged in
@@ -15,9 +17,10 @@ const Login = () => {
     }
   }, [user]);
 
-  const [loading, setLoading] = useState(false);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
     let email = e.target.elements.email?.value;
     let password = e.target.elements.password?.value;
@@ -37,7 +40,7 @@ const Login = () => {
         if (response.status === 200) {
           return response.json();
         } else {
-          throw new Error("Something went wrong!");
+          throw new Error("Incorrect username or password!");
         }
       })
       .then((res) => {
@@ -46,7 +49,7 @@ const Login = () => {
           dispatch(login(res));
         }
       })
-      .catch(console.error);
+      .catch(err => {setError(err.message)});
   };
   return (
     <div className="h-screen flex bg-gray-bg1">
@@ -77,7 +80,7 @@ const Login = () => {
               required
             />
           </div>
-
+          {error && <div className="flex justify-center text-red-500 italic text-sm">*{error}</div>}
           <div className="flex justify-center items-center mt-6">
             <button
               className={`bg-green-500 py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark`}
